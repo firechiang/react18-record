@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Starup</title>
+</head>
+<style>
+	.test {
+		background-color:aquamarine; 
+	}
+</style>
+<body>
+  <div id="root"></div>
+  <script src="./react.min.js"></script>
+  <script src="./react-dom.min.js"></script>
+  <!-- 解析JSX语法插件 -->
+  <script src="./babel.min.js"></script>
+  <!-- 使用babel解析JSX语法 -->
+  <script type="text/babel">
+	function LikeButton({setIsLogin}) {
+      return (
+        <button 
+            onClick={() => { 
+				console.log('button clicked')
+				setIsLogin(true)
+			  }}
+         >
+          点击登录
+        </button>
+      )
+	 }
+    function Login() {
+		return (
+			<div>
+				<h1>欢迎回来!</h1>
+			</div>
+		)
+	}
+	function UnLogin() {
+		return (
+			<div>
+				<h6>请登录!</h6>
+			</div>
+		)
+	}
+    function MyApp() {
+	  const [isLogin,setIsLogin]= React.useState(false)
+	  const products = [
+		  {title:'A',id:1},
+		  {title:'B',id:2},
+		  {title:'C',id:3}
+	  ]
+		const title = "我的测试组件";
+		return (
+		 <div className = "test">
+			<h1 style={{color:"blue"}}>{title}</h1>
+			{
+				// isLogin等于true展示组件<Login>
+				isLogin && <Login/>
+			}
+			{
+				// isLogin等于false展示组件<UnLogin>
+				!isLogin && <UnLogin/>
+			}
+			{
+				!isLogin && <LikeButton setIsLogin = {setIsLogin}/>	
+			}
+			<ul>
+				{
+					products.map((product,index)=>{
+						return (
+							<li 
+							    key={product.id}
+							    style = {{color: product.id === 1 ? "red" : "block"}}
+							    onClick = {() => {
+									console.log(product.id)
+								}}
+						     >
+								{product.title}
+							</li>
+						)
+					})
+				}
+			</ul>
+		</div>
+		)
+	}
+    // 获取一个页面根节点
+    const rootNode = document.getElementById('root');
+    // 创建一个 React 根实例
+    const root = ReactDOM.createRoot(rootNode);
+    // 使用跟实例渲染一个组件
+    root.render(React.createElement(MyApp));
+  </script>
+</body>
+</html>
