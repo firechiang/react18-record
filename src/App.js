@@ -15,7 +15,7 @@ import {ImperativeHandleTest} from './components/imperative-handle-test/Imperati
 import { LazyTest } from './components/lazy-test/LazyTest';
 import { DeferredValueTest } from './components/deferred-value-test/DeferredValueTest';
 import { TransitionTest } from './components/transitio-test/TransitionTest';
-
+import { Motest } from './components/mo-test/Motest';
 function App() {
   return (
     <div>
@@ -66,6 +66,9 @@ function App() {
         </div>
         <div>
 	        <TransitionTest/>
+        </div>
+        <div>
+	        <Motest/>
         </div>
     </div>
   );
